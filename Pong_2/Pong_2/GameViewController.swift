@@ -20,7 +20,7 @@ class GameViewController: UIViewController {
             if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                
+                scene.size = view.bounds.size // ustawia scene na podstawie wielkosci ekranu
                 // Present the scene
                 view.presentScene(scene)
             }
@@ -29,6 +29,7 @@ class GameViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
+            //view.showsPhysics = true // pokazuje fizyczne cialo na ekranie apliakcji
         }
     }
 

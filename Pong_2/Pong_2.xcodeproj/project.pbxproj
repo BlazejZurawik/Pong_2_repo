@@ -15,6 +15,7 @@
 		BE6F400022956F45001AA6FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE6F3FFE22956F45001AA6FC /* Main.storyboard */; };
 		BE6F400222956F45001AA6FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE6F400122956F45001AA6FC /* Assets.xcassets */; };
 		BE6F400522956F45001AA6FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE6F400322956F45001AA6FC /* LaunchScreen.storyboard */; };
+		BE8DCA4D22958F0A002C8EDB /* fortune cookies demo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE8DCA4A22958CBE002C8EDB /* fortune cookies demo.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		BE6F400122956F45001AA6FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE6F400422956F45001AA6FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE6F400622956F45001AA6FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE8DCA4A22958CBE002C8EDB /* fortune cookies demo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fortune cookies demo.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				BE6F3FF822956F45001AA6FC /* Actions.sks */,
 				BE6F3FFA22956F45001AA6FC /* GameScene.swift */,
 				BE6F3FFC22956F45001AA6FC /* GameViewController.swift */,
+				BE8DCA4A22958CBE002C8EDB /* fortune cookies demo.ttf */,
 				BE6F3FFE22956F45001AA6FC /* Main.storyboard */,
 				BE6F400122956F45001AA6FC /* Assets.xcassets */,
 				BE6F400322956F45001AA6FC /* LaunchScreen.storyboard */,
@@ -132,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE6F400022956F45001AA6FC /* Main.storyboard in Resources */,
+				BE8DCA4D22958F0A002C8EDB /* fortune cookies demo.ttf in Resources */,
 				BE6F3FF722956F45001AA6FC /* GameScene.sks in Resources */,
 				BE6F400222956F45001AA6FC /* Assets.xcassets in Resources */,
 				BE6F400522956F45001AA6FC /* LaunchScreen.storyboard in Resources */,
