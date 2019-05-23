@@ -14,10 +14,12 @@ class GameScene: SKScene {
     var mainPaddle: SKSpriteNode!
     var enemyPaddle: SKSpriteNode!
     var ball: SKSpriteNode!
+    var backLabel: SKSpriteNode!
     
     var score = [Int]()
     var scoreLabelMain = SKLabelNode()
     var scoreLabelEnemy = SKLabelNode()
+    
     
     override func didMove(to view: SKView) {
         initializeGameObjects()
@@ -81,11 +83,30 @@ class GameScene: SKScene {
             }
         }
         
+        for touch: AnyObject in touches{
+            let location = touch.location(in: self)
+            let touchedNode = self.nodes(at: location)
+            let transition1 = SKTransition.doorsCloseVertical(withDuration: 0.5)
+            for node in touchedNode{
+                
+                if node.name == "back" {
+                    
+                    let gameScene1 = MenuScene()
+                    gameScene1.scaleMode = .resizeFill
+                    self.view?.presentScene(gameScene1, transition: transition1)
+                    self.removeAllActions()
+                    self.removeAllChildren()
+                    
+                }
+            }
+        }
+        
         /* // warunek mowi mi w jaka pozycje na ekranie dotknalem
          if let touch = touches.first {
          let position = touch.location(in: view)
          print(position)
          }*/
+        
     }
     
     //metoda odpowiedzialna za wykrycie przesuniecia palcem po ekranie
@@ -189,6 +210,14 @@ class GameScene: SKScene {
         scoreLabelEnemy.fontSize = 24
         scoreLabelEnemy.name = "scoreEnemy"
         self.addChild(scoreLabelEnemy)
+        
+        backLabel = SKSpriteNode(imageNamed: "arrow-1")
+        backLabel.position.x = (self.frame.width / 2) - 20
+        backLabel.position.y = (self.frame.height / 2) - 284
+        backLabel.size = CGSize(width: 20, height: 20)
+        backLabel.name = "back"
+        self.addChild(backLabel)
     }
+    
     
 }
