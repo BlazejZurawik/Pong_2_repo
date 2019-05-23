@@ -37,7 +37,7 @@ class GameScene: SKScene {
         
         scoreLabelEnemy.text = "\(score[1])" //przekszatalca liczbe z tabeli na tekst
         scoreLabelMain.text = "\(score[0])"
-        //petla wyswietlajaca wszystkie fonty w systemie i mowiaca nam pod jaka nazwa mozemy je znalezc
+        /*petla wyswietlajaca wszystkie fonty w systemie i mowiaca nam pod jaka nazwa mozemy je znalezc
          for family: String in UIFont.familyNames
          {
          print(family)
@@ -45,7 +45,7 @@ class GameScene: SKScene {
          {
          print("== \(names)")
          }
-         }
+         }*/
  
     }
     

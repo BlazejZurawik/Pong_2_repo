@@ -16,14 +16,20 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            /* Load the SKScene from 'GameScene.sks'
+            if let scene = SKScene(fileNamed: "MenuScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 scene.size = view.bounds.size // ustawia scene na podstawie wielkosci ekranu
                 // Present the scene
                 view.presentScene(scene)
-            }
+            }*/
+            
+            let menuScene = MenuScene()
+            menuScene.scaleMode = .aspectFill
+            menuScene.size = view.bounds.size
+            view.presentScene(menuScene)
+            
             
             view.ignoresSiblingOrder = true
             
@@ -35,7 +41,7 @@ class GameViewController: UIViewController {
 
     override var shouldAutorotate: Bool {
         return true
-    }
+    }		
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
