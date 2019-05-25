@@ -14,6 +14,7 @@ class OptionScene: SKScene {
     var optionsLabel = SKLabelNode()
     
     var nameLabel = SKLabelNode()
+    var nameBox = UITextField()
     
     var modeLabel = SKLabelNode()
     
@@ -34,6 +35,28 @@ class OptionScene: SKScene {
         optionsLabel.fontColor = SKColor(red: 0.35, green: 0.86, blue: 0.41, alpha: 1)
         optionsLabel.text = "Options"
         self.addChild(optionsLabel)
+        
+        nameLabel = SKLabelNode(fontNamed: "fortunecookies")
+        nameLabel.position.x = (self.frame.width / 2)
+        nameLabel.position.y = (self.frame.height / 2) + 60
+        nameLabel.fontSize = 36
+        nameLabel.text = "Name"
+        self.addChild(nameLabel)
+        
+        modeLabel = SKLabelNode(fontNamed: "fortunecookies")
+        modeLabel.position.x = (self.frame.width / 2)
+        modeLabel.position.y = (self.frame.height / 2) - 60
+        modeLabel.fontSize = 36
+        modeLabel.text = "Dark mode  OFF"
+        self.addChild(modeLabel)
+        
+        clearScore = SKLabelNode(fontNamed: "fortunecookies")
+        clearScore.position.x = (self.frame.width / 2)
+        clearScore.position.y = (self.frame.height / 2) - 120
+        clearScore.fontSize = 36
+
+        clearScore.text = "Clear Score table"
+        self.addChild(clearScore)
         
         backLabel = SKLabelNode(fontNamed: "fortunecookies")
         backLabel.position.x = (self.frame.width / 2) - 110

@@ -9,6 +9,8 @@
 import SpriteKit
 import GameplayKit
 
+
+
 class GameScene: SKScene {
     
     var mainPaddle: SKSpriteNode!
@@ -25,7 +27,7 @@ class GameScene: SKScene {
         initializeGameObjects()
         startGame()
         
-        ball.physicsBody?.applyImpulse(CGVector(dx: 2, dy: 2)) // impuls wprawiajacy pileczke w ruch (im wiecej w dx i dy tym mocniejszy jest "wystrzal" -- nie do konca rozumiem jak to dziala)
+        
         
         let border = SKPhysicsBody(edgeLoopFrom: self.frame) // tworzy granice dookola calego ekranu
         border.friction = 0
@@ -39,6 +41,9 @@ class GameScene: SKScene {
         
         scoreLabelEnemy.text = "\(score[1])" //przekszatalca liczbe z tabeli na tekst
         scoreLabelMain.text = "\(score[0])"
+        
+        ball.physicsBody?.applyImpulse(CGVector(dx: 2, dy: 2)) // impuls wprawiajacy pileczke w ruch (im wiecej w dx i dy tym mocniejszy jest "wystrzal" -- nie do konca rozumiem jak to dziala)
+        
         /*petla wyswietlajaca wszystkie fonty w systemie i mowiaca nam pod jaka nazwa mozemy je znalezc
          for family: String in UIFont.familyNames
          {

@@ -9,6 +9,13 @@
 import SpriteKit
 import GameplayKit
 
+enum gameType{
+    case easy
+    case medium
+    case hard
+    case player2
+}
+
 class StartGameScene: SKScene {
     
     var uvsuLabel = SKLabelNode()
