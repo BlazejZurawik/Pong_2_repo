@@ -9,12 +9,6 @@
 import SpriteKit
 import GameplayKit
 
-enum gameType{
-    case easy
-    case medium
-    case hard
-    case player2
-}
 
 class StartGameScene: SKScene {
     
@@ -47,6 +41,7 @@ class StartGameScene: SKScene {
         goLabel.position.x = (self.frame.width / 2)
         goLabel.position.y = (self.frame.height / 2) + 120
         goLabel.fontSize = 36
+        goLabel.name = "Go"
         goLabel.text = "Go!"
         self.addChild(goLabel)
         
@@ -70,6 +65,7 @@ class StartGameScene: SKScene {
         mediumLabel.position.x = (self.frame.width / 2)
         mediumLabel.position.y = (self.frame.height / 2) - 90
         mediumLabel.fontSize = 36
+        mediumLabel.name = "Medium"
         mediumLabel.text = "Medium"
         self.addChild(mediumLabel)
         
@@ -77,6 +73,7 @@ class StartGameScene: SKScene {
         hardLabel.position.x = (self.frame.width / 2)
         hardLabel.position.y = (self.frame.height / 2) - 150
         hardLabel.fontSize = 36
+        hardLabel.name = "Hard"
         hardLabel.text = "Hard"
         self.addChild(hardLabel)
         
@@ -106,11 +103,39 @@ class StartGameScene: SKScene {
                     self.removeAllActions()
                     self.removeAllChildren()
                     
-                } else if node.name == "Easy"{
+                } else if node.name == "Easy" {
                     
                     let gameScene2 = GameScene(fileNamed: "GameScene")
                     gameScene2?.scaleMode = .resizeFill
+                    gameScene2?.gameModee = "easy"
                     self.view?.presentScene(gameScene2!, transition: transition1)
+                    self.removeAllActions()
+                    self.removeAllChildren()
+                    
+                } else if node.name == "Medium" {
+                    
+                    let gameScene3 = GameScene(fileNamed: "GameScene")
+                    gameScene3?.scaleMode = .resizeFill
+                    gameScene3?.gameModee = "medium"
+                    self.view?.presentScene(gameScene3!, transition: transition1)
+                    self.removeAllActions()
+                    self.removeAllChildren()
+                    
+                } else if node.name == "Hard" {
+                    
+                    let gameScene4 = GameScene(fileNamed: "GameScene")
+                    gameScene4?.scaleMode = .resizeFill
+                    gameScene4?.gameModee = "hard"
+                    self.view?.presentScene(gameScene4!, transition: transition1)
+                    self.removeAllActions()
+                    self.removeAllChildren()
+                    
+                } else if node.name == "Go" {
+                    
+                    let gameScene5 = GameScene(fileNamed: "GameScene")
+                    gameScene5?.scaleMode = .resizeFill
+                    gameScene5?.gameModee = "player2"
+                    self.view?.presentScene(gameScene5!, transition: transition1)
                     self.removeAllActions()
                     self.removeAllChildren()
                     
@@ -118,6 +143,6 @@ class StartGameScene: SKScene {
             }
         }
     }
-
+    
 }
 

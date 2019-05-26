@@ -10,7 +10,6 @@ import SpriteKit
 import GameplayKit
 
 
-
 class GameScene: SKScene {
     
     var mainPaddle: SKSpriteNode!
@@ -22,6 +21,7 @@ class GameScene: SKScene {
     var scoreLabelMain = SKLabelNode()
     var scoreLabelEnemy = SKLabelNode()
     
+    var gameModee:String = ""
     
     override func didMove(to view: SKView) {
         initializeGameObjects()
@@ -80,11 +80,15 @@ class GameScene: SKScene {
         
         for touch in touches{
             let location = touch.location(in: self)
-            if location.y < self.frame.size.width / 2 - 368
-            {
-                mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0.2))
+            if gameModee == "player2"{
+                if location.y < self.frame.size.width - 284
+                {
+                    mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0.2))
+                } else {
+                    enemyPaddle.run(SKAction.moveTo(x: location.x, duration: 0.2))
+                }
             } else {
-                //enemyPaddle.run(SKAction.moveTo(x: location.x, duration: 0.2))
+                mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0.2))
             }
         }
         
@@ -106,7 +110,7 @@ class GameScene: SKScene {
             }
         }
         
-        /* // warunek mowi mi w jaka pozycje na ekranie dotknalem
+         /*// warunek mowi mi w jaka pozycje na ekranie dotknalem
          if let touch = touches.first {
          let position = touch.location(in: view)
          print(position)
@@ -119,21 +123,44 @@ class GameScene: SKScene {
         
         for touch in touches{
             let location = touch.location(in: self)
-            if location.y < self.frame.size.width / 2 - 368
-            {
-                mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0.2))
+            
+            if gameModee == "player2"{
+                if location.y < self.frame.size.width - 284
+                {
+                    mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0.2))
+                } else {
+                    enemyPaddle.run(SKAction.moveTo(x: location.x, duration: 0.2))
+                }
             } else {
-                //enemyPaddle.run(SKAction.moveTo(x: location.x, duration: 0.2))
+                mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0.2))
             }
+
         }
     }
     
     
-    //metoda odpowiedzialna za AI enemy
+    //metoda odpowiedzialna za AI enemy i score
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         //powinno znajdowac sie tutaj jak naj mniej rzeczy aby nie "zamulac" programu
-        enemyPaddle.run(SKAction.moveTo(x: ball.position.x, duration: 1.0))
+    
+        if gameModee == "easy" {
+            
+            enemyPaddle.run(SKAction.moveTo(x: ball.position.x, duration: 1.2))
+            
+        } else if gameModee == "medium" {
+            
+            enemyPaddle.run(SKAction.moveTo(x: ball.position.x, duration: 0.8))
+            
+            
+        } else if gameModee == "hard" {
+            
+            enemyPaddle.run(SKAction.moveTo(x: ball.position.x, duration: 0.6))
+            
+            
+        } else if gameModee == "player2" {
+            
+        }
         
         if ball.position.y <= mainPaddle.position.y - 35 {
             
