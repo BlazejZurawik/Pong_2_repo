@@ -99,7 +99,9 @@ class GameScene: SKScene {
             for node in touchedNode{
                 
                 if node.name == "back" {
+
                     
+                    // TRANSITION TO LEADERBOARD SCENE
                     let gameScene1 = MenuScene()
                     gameScene1.scaleMode = .resizeFill
                     self.view?.presentScene(gameScene1, transition: transition1)

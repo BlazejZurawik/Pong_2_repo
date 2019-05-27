@@ -14,13 +14,15 @@ class OptionScene: SKScene {
     var optionsLabel = SKLabelNode()
     
     var nameLabel = SKLabelNode()
-    var nameBox = UITextField()
+    var userNameTextField:UITextField!
     
     var modeLabel = SKLabelNode()
     
     var clearScore = SKLabelNode()
-    
+
     var backLabel = SKLabelNode()
+    
+    
     
     override func didMove(to view: SKView) {
         initializeMenuObject()
@@ -66,6 +68,25 @@ class OptionScene: SKScene {
         backLabel.text = "Back"
         backLabel.name = "Back"
         self.addChild(backLabel)
+        
+        
+        let textFieldFrame = CGRect(x: (self.frame.width / 2) - 100, y: (self.frame.height / 2) - 50, width: 200, height: 60)
+        userNameTextField = UITextField(frame: textFieldFrame)
+        
+        view?.addSubview(userNameTextField)
+        userNameTextField.layer.cornerRadius = 10.0
+        userNameTextField.layer.borderWidth = 2
+        userNameTextField.layer.borderColor = UIColor.black.cgColor
+        userNameTextField.textAlignment = .center
+        userNameTextField.backgroundColor = .lightGray
+        userNameTextField.textColor = .black
+        userNameTextField.clearButtonMode = .whileEditing
+        userNameTextField.returnKeyType = .done
+        let data =  UserDefaults.standard.string(forKey: "userName") ?? "Enter your name"
+        userNameTextField.text = data
+        userNameTextField.placeholder = "Enter your name"
+        self.view?.addSubview(userNameTextField)
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -81,11 +102,14 @@ class OptionScene: SKScene {
                     gameScene1.scaleMode = .resizeFill
                     self.view?.presentScene(gameScene1, transition: transition1)
                     self.removeAllActions()
+                    userNameTextField.removeFromSuperview()
                     self.removeAllChildren()
+                    UserDefaults.standard.set(userNameTextField.text, forKey: "userName") //dodaje do pamieci podrecznej text pod keyem userName
+                    
                     
                 } else {
                     
-                    
+                    userNameTextField.endEditing(true)
                 }
             }
         }
