@@ -63,9 +63,9 @@ class ScoreScene: SKScene {
         self.addChild(userScore)
         
         //tablica user AI
-        let leaderboardFrame = CGRect(x: (self.frame.width / 2) - 100, y: (self.frame.height / 2) - 150 , width: 225, height: 377)
+        let leaderboardFrame = CGRect(x: (self.frame.width / 2) - 100, y: (self.frame.height / 2) - 150 , width: 225, height: 318)
         leaderboardTextView = UITextView(frame: leaderboardFrame)
-        leaderboardTextView.font = UIFont(name: "Georgia-Bold", size: 25)
+        leaderboardTextView.font = UIFont(name: "Georgia-Bold", size: 18)
         leaderboardTextView.text = ""
         leaderboardTextView.isUserInteractionEnabled = false
         leaderboardTextView.isEditable = false
@@ -90,10 +90,10 @@ class ScoreScene: SKScene {
         self.view?.addSubview(leaderboardTextView)
         
         // tablica user user
-        let leaderboardFrameUser = CGRect(x: (self.frame.width / 2) - 100, y: (self.frame.height / 2) - 150 , width: 225, height: 377)
+        let leaderboardFrameUser = CGRect(x: (self.frame.width / 2) - 100, y: (self.frame.height / 2) - 150 , width: 225, height: 318)
         leaderboardTextViewUser = UITextView(frame: leaderboardFrameUser)
-        leaderboardTextViewUser.font = UIFont(name: "Georgia-Bold", size: 25)
-        leaderboardTextViewUser.text = "tescik"
+        leaderboardTextViewUser.font = UIFont(name: "Georgia-Bold", size: 18)
+        leaderboardTextViewUser.text = ""
         leaderboardTextViewUser.isUserInteractionEnabled = false
         leaderboardTextViewUser.isEditable = false
         leaderboardTextViewUser.isScrollEnabled = true
@@ -106,15 +106,16 @@ class ScoreScene: SKScene {
         if let data = userDefaultsUser.value(forKey: "leaderBoardUser") as? Data {
             let leaderBoardData2User = try? PropertyListDecoder().decode(Array<userDataScoreUser>.self, from: data)
             for i in leaderBoardData2User!{
-                var newNameUser:String? = i.name!
+                var newNameUserU:String? = i.name!
                 var newNameEnemy:String? = "Enemy"
-                if let newName2User = newNameUser{
-                    leaderboardTextView.text.append("\(positionUser). " + "\(String(describing: newName2User))  \(String(describing: i.score!)) : \(String(describing: i.score2!)) \(String(describing: newNameEnemy))" + "\n" )
+                if let newName2User = newNameUserU{
+                    leaderboardTextViewUser.text.append("\(positionUser). " + "\(String(describing: newName2User))  \(String(describing: i.score!)) : \(String(describing: i.score2!)) \(String(describing: newNameEnemy!))" + "\n" )
                 }
                 
                 positionUser += 1
             }
         }
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

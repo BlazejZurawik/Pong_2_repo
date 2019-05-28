@@ -114,6 +114,11 @@ class OptionScene: SKScene {
                     let userDefaults = UserDefaults.standard
                     let leaderBoardData2: [userDataScore] = []
                     userDefaults.set(try? PropertyListEncoder().encode(leaderBoardData2), forKey: "leaderBoard")
+                    
+                    let userDefaultsUser = UserDefaults.standard
+                    let leaderBoardData2User: [userDataScoreUser] = []
+                    userDefaultsUser.set(try? PropertyListEncoder().encode(leaderBoardData2User), forKey: "leaderBoardUser")
+                    
                     clearScore.text = "Score cleared"
                     
                 } else if node.name == "modeLabel" {

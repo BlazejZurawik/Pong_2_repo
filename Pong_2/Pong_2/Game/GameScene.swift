@@ -106,9 +106,35 @@ class GameScene: SKScene {
                     
                     if gameModee == "player2"{
                         print("gameMode player2")
+                        // saving score user user
+                        let userDefaultsUser = UserDefaults.standard
+                        if let leaderBoardDataUser = userDefaultsUser.value(forKey: "leaderBoardUser") as? Data {
+                            var leaderBoardData2User = try? PropertyListDecoder().decode(Array<userDataScoreUser>.self, from: leaderBoardDataUser)
+                            
+                            if (data == ""){
+                                leaderBoardData2User?.append(userDataScoreUser(name: "Guest", score: score[0], score2: score[1], name2: "Guest"))
+                                print(score)
+                                print("nie bylo data")
+                            }else{
+                                leaderBoardData2User?.append(userDataScoreUser(name: data! , score: score[0], score2: score[1], name2: "Guest"))
+                                print(score)
+                                print("byla daty")
+                            }
+                            
+                            leaderBoardData2User?.sort(by: {$0.score > $1.score})
+                            
+                            userDefaultsUser.set(try? PropertyListEncoder().encode(leaderBoardData2User), forKey: "leaderBoardUser")
+                            
+                        } else {
+                            
+                            let userDefaultsUser = UserDefaults.standard
+                            let leaderBoardData2User: [userDataScoreUser] = []
+                            userDefaultsUser.set(try? PropertyListEncoder().encode(leaderBoardData2User), forKey: "leaderBoardUser")
+                        }
+                        
                     } else {
                     
-                        // SAVING SCORE TO USER DEFAULTS
+                        // savig score user ai
                         let userDefaults = UserDefaults.standard
                         if let leaderBoardData = userDefaults.value(forKey: "leaderBoard") as? Data {
                             var leaderBoardData2 = try? PropertyListDecoder().decode(Array<userDataScore>.self, from: leaderBoardData)
