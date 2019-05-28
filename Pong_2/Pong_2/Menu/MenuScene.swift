@@ -16,7 +16,10 @@ class MenuScene: SKScene {
     var optionsLabel = SKLabelNode()
     var scoreLabel = SKLabelNode()
     
+    
     override func didMove(to view: SKView) {
+        
+        self.backgroundColor = GlobalVar.backgroundColor
         initializeMenuObject()
         
     }

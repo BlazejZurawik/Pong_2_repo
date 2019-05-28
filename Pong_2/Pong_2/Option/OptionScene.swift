@@ -17,16 +17,16 @@ class OptionScene: SKScene {
     var userNameTextField:UITextField!
     
     var modeLabel = SKLabelNode()
-    var flag = true
     
     var clearScore = SKLabelNode()
 
     var backLabel = SKLabelNode()
     
-    
-    
+
     override func didMove(to view: SKView) {
+    
         initializeMenuObject()
+        self.backgroundColor = GlobalVar.backgroundColor
     }
     
     private func initializeMenuObject()
@@ -50,7 +50,11 @@ class OptionScene: SKScene {
         modeLabel.position.x = (self.frame.width / 2)
         modeLabel.position.y = (self.frame.height / 2) - 60
         modeLabel.fontSize = 36
-        modeLabel.text = "Dark mode  ON"
+        if GlobalVar.backgroundColor == UIColor.black {
+             modeLabel.text = "Dark mode  ON"
+        } else {
+            modeLabel.text = "Dark mode  OFF"
+        }
         modeLabel.name = "modeLabel"
         self.addChild(modeLabel)
         
@@ -123,14 +127,26 @@ class OptionScene: SKScene {
                     
                 } else if node.name == "modeLabel" {
                     
-                    if flag == true {
+                    if GlobalVar.backgroundColor == UIColor.black {
+                        
+                        GlobalVar.backgroundColor = UIColor.gray
+                        
                         modeLabel.text = "Dark mode  OFF"
-                        flag = false
-                    } else if flag == false {
+                        
+                    } else if GlobalVar.backgroundColor == UIColor.gray {
+                        
+                        GlobalVar.backgroundColor = UIColor.black
+                        
                         modeLabel.text = "Dark mode  ON"
-                        flag = true
-                    }
 
+                    }
+                    
+                    let gameScene1 = OptionScene()
+                    gameScene1.scaleMode = .resizeFill
+                    self.view?.presentScene(gameScene1)
+                    self.removeAllActions()
+                    userNameTextField.removeFromSuperview()
+                    self.removeAllChildren()
                     
                 } else{
                     

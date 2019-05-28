@@ -23,6 +23,7 @@ class ScoreScene: SKScene {
     
     override func didMove(to view: SKView) {
         initializeMenuObject()
+        self.backgroundColor = GlobalVar.backgroundColor
     }
     
     private func initializeMenuObject()

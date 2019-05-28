@@ -33,12 +33,12 @@ class GameViewController: UIViewController {
             
             view.ignoresSiblingOrder = true
             
-            view.showsFPS = true
-            view.showsNodeCount = true
+            view.showsFPS = false
+            view.showsNodeCount = false
             //view.showsPhysics = true // pokazuje fizyczne cialo na ekranie apliakcji
         }
     }
-
+    
     override var shouldAutorotate: Bool {
         return false
     }		
