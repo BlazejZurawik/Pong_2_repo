@@ -17,6 +17,7 @@ class OptionScene: SKScene {
     var userNameTextField:UITextField!
     
     var modeLabel = SKLabelNode()
+    var flag = true
     
     var clearScore = SKLabelNode()
 
@@ -49,14 +50,15 @@ class OptionScene: SKScene {
         modeLabel.position.x = (self.frame.width / 2)
         modeLabel.position.y = (self.frame.height / 2) - 60
         modeLabel.fontSize = 36
-        modeLabel.text = "Dark mode  OFF"
+        modeLabel.text = "Dark mode  ON"
+        modeLabel.name = "modeLabel"
         self.addChild(modeLabel)
         
         clearScore = SKLabelNode(fontNamed: "fortunecookies")
         clearScore.position.x = (self.frame.width / 2)
         clearScore.position.y = (self.frame.height / 2) - 120
         clearScore.fontSize = 36
-
+        clearScore.name = "ClearScore"
         clearScore.text = "Clear Score table"
         self.addChild(clearScore)
         
@@ -107,7 +109,25 @@ class OptionScene: SKScene {
                     UserDefaults.standard.set(userNameTextField.text, forKey: "userName") //dodaje do pamieci podrecznej text pod keyem userName
                     
                     
-                } else {
+                } else if node.name == "ClearScore" {
+                    
+                    let userDefaults = UserDefaults.standard
+                    let leaderBoardData2: [userDataScore] = []
+                    userDefaults.set(try? PropertyListEncoder().encode(leaderBoardData2), forKey: "leaderBoard")
+                    clearScore.text = "Score cleared"
+                    
+                } else if node.name == "modeLabel" {
+                    
+                    if flag == true {
+                        modeLabel.text = "Dark mode  OFF"
+                        flag = false
+                    } else if flag == false {
+                        modeLabel.text = "Dark mode  ON"
+                        flag = true
+                    }
+
+                    
+                } else{
                     
                     userNameTextField.endEditing(true)
                 }

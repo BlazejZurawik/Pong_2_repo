@@ -93,15 +93,43 @@ class GameScene: SKScene {
         }
         
         for touch: AnyObject in touches{
+            
+            let data =  UserDefaults.standard.string(forKey: "userName")
             let location = touch.location(in: self)
             let touchedNode = self.nodes(at: location)
             let transition1 = SKTransition.doorsCloseVertical(withDuration: 0.5)
             for node in touchedNode{
                 
                 if node.name == "back" {
-
+                    print(score)
+                    print(data!)
+                    // SAVING SCORE TO USER DEFAULTS
+                    let userDefaults = UserDefaults.standard
+                    if let leaderBoardData = userDefaults.value(forKey: "leaderBoard") as? Data {
+                        var leaderBoardData2 = try? PropertyListDecoder().decode(Array<userDataScore>.self, from: leaderBoardData)
+                        
+                        if (data == ""){
+                            leaderBoardData2?.append(userDataScore(name: "Guest", score: score[0], score2: score[1]))
+                            print(score)
+                            print("nie bylo data")
+                        }else{
+                            leaderBoardData2?.append(userDataScore(name: data! , score: score[0], score2: score[1]))
+                            print(score)
+                            print("byla daty")
+                        }
+                        
+                        leaderBoardData2?.sort(by: {$0.score > $1.score})
+                        
+                        userDefaults.set(try? PropertyListEncoder().encode(leaderBoardData2), forKey: "leaderBoard")
+                        
+                    } else {
+                        
+                        let userDefaults = UserDefaults.standard
+                        let leaderBoardData2: [userDataScore] = []
+                        userDefaults.set(try? PropertyListEncoder().encode(leaderBoardData2), forKey: "leaderBoard")
+                    }
                     
-                    // TRANSITION TO LEADERBOARD SCENE
+                    
                     let gameScene1 = MenuScene()
                     gameScene1.scaleMode = .resizeFill
                     self.view?.presentScene(gameScene1, transition: transition1)

@@ -10,12 +10,16 @@ import Foundation
 
 struct userDataScore: Codable {
     
-    var name: String!
-    var score: Int!
+    var name:String!
+    var score:Int!
+    var score2:Int!
     
-    init(name: String = "defoultUserName", score: Int = 0) {
+    init(name: String = "defoultUserName", score: Int, score2: Int) {
         self.name = name
         self.score = score
+        self.score2 = score2
     }
     
 }
+
+
