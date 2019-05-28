@@ -13,6 +13,8 @@ class ScoreScene: SKScene {
     
     var scoreLabel = SKLabelNode()
     var backLabel = SKLabelNode()
+    var aiScore = SKLabelNode()
+    var userScore = SKLabelNode()
     
     var leaderboardTextView: UITextView!
     
@@ -38,6 +40,24 @@ class ScoreScene: SKScene {
         backLabel.text = "Back"
         backLabel.name = "Back"
         self.addChild(backLabel)
+        
+        aiScore = SKLabelNode(fontNamed: "fortunecookies")
+        aiScore.position.x = (self.frame.width / 2) - 85
+        aiScore.position.y = (self.frame.height / 2) - 200
+        aiScore.fontSize = 28
+        aiScore.fontColor = SKColor(red: 0.35, green: 0.86, blue: 0.41, alpha: 1)
+        aiScore.text = "User vs AI"
+        aiScore.name = "UvAI"
+        self.addChild(aiScore)
+        
+        userScore = SKLabelNode(fontNamed: "fortunecookies")
+        userScore.position.x = (self.frame.width / 2) + 75
+        userScore.position.y = (self.frame.height / 2) - 200
+        userScore.fontSize = 28
+        userScore.fontColor = SKColor(red: 0.35, green: 0.86, blue: 0.41, alpha: 1)
+        userScore.text = "User vs User"
+        userScore.name = "UvU"
+        self.addChild(userScore)
         
         let leaderboardFrame = CGRect(x: (self.frame.width / 2) - 100, y: (self.frame.height / 2) - 150 , width: 225, height: 377)
         leaderboardTextView = UITextView(frame: leaderboardFrame)

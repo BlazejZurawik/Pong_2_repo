@@ -22,4 +22,20 @@ struct userDataScore: Codable {
     
 }
 
+struct userUserDataScore: Codable {
+    
+    var name:String!
+    var score:Int!
+    var score2:Int!
+    var name2:String!
+    
+    init(name: String = "defoultUserName", score: Int, score2: Int, name2: String = "defoultUserName") {
+        self.name = name
+        self.score = score
+        self.score2 = score2
+        self.name2 = name2
+    }
+    
+}
+
 
