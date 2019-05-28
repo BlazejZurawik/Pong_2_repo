@@ -17,6 +17,9 @@ class ScoreScene: SKScene {
     var userScore = SKLabelNode()
     
     var leaderboardTextView: UITextView!
+    var leaderboardTextViewUser: UITextView!
+    
+    var flagScore = true
     
     override func didMove(to view: SKView) {
         initializeMenuObject()
@@ -45,7 +48,7 @@ class ScoreScene: SKScene {
         aiScore.position.x = (self.frame.width / 2) - 85
         aiScore.position.y = (self.frame.height / 2) - 200
         aiScore.fontSize = 28
-        aiScore.fontColor = SKColor(red: 0.35, green: 0.86, blue: 0.41, alpha: 1)
+        aiScore.fontColor = SKColor(red: 0.35, green: 0.86, blue: 0.41, alpha: 0.7)
         aiScore.text = "User vs AI"
         aiScore.name = "UvAI"
         self.addChild(aiScore)
@@ -59,6 +62,7 @@ class ScoreScene: SKScene {
         userScore.name = "UvU"
         self.addChild(userScore)
         
+        //tablica user AI
         let leaderboardFrame = CGRect(x: (self.frame.width / 2) - 100, y: (self.frame.height / 2) - 150 , width: 225, height: 377)
         leaderboardTextView = UITextView(frame: leaderboardFrame)
         leaderboardTextView.font = UIFont(name: "Georgia-Bold", size: 25)
@@ -68,6 +72,7 @@ class ScoreScene: SKScene {
         leaderboardTextView.isScrollEnabled = true
         leaderboardTextView.backgroundColor = UIColor.clear
         leaderboardTextView.textColor = UIColor.white
+        
         
         let userDefaults = UserDefaults.standard
         var position:Int = 1
@@ -82,8 +87,34 @@ class ScoreScene: SKScene {
                 position += 1
             }
         }
-        
         self.view?.addSubview(leaderboardTextView)
+        
+        // tablica user user
+        let leaderboardFrameUser = CGRect(x: (self.frame.width / 2) - 100, y: (self.frame.height / 2) - 150 , width: 225, height: 377)
+        leaderboardTextViewUser = UITextView(frame: leaderboardFrameUser)
+        leaderboardTextViewUser.font = UIFont(name: "Georgia-Bold", size: 25)
+        leaderboardTextViewUser.text = "tescik"
+        leaderboardTextViewUser.isUserInteractionEnabled = false
+        leaderboardTextViewUser.isEditable = false
+        leaderboardTextViewUser.isScrollEnabled = true
+        leaderboardTextViewUser.backgroundColor = UIColor.clear
+        leaderboardTextViewUser.textColor = UIColor.white
+
+        
+        let userDefaultsUser = UserDefaults.standard
+        var positionUser:Int = 1
+        if let data = userDefaultsUser.value(forKey: "leaderBoardUser") as? Data {
+            let leaderBoardData2User = try? PropertyListDecoder().decode(Array<userDataScoreUser>.self, from: data)
+            for i in leaderBoardData2User!{
+                var newNameUser:String? = i.name!
+                var newNameEnemy:String? = "Enemy"
+                if let newName2User = newNameUser{
+                    leaderboardTextView.text.append("\(positionUser). " + "\(String(describing: newName2User))  \(String(describing: i.score!)) : \(String(describing: i.score2!)) \(String(describing: newNameEnemy))" + "\n" )
+                }
+                
+                positionUser += 1
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -100,7 +131,32 @@ class ScoreScene: SKScene {
                     self.view?.presentScene(gameScene1, transition: transition1)
                     self.removeAllActions()
                     leaderboardTextView.removeFromSuperview()
+                    leaderboardTextViewUser.removeFromSuperview()
                     self.removeAllChildren()
+                    
+                    
+                } else if node.name == "UvAI" {
+                    
+                    if flagScore == false {
+                        leaderboardTextViewUser.removeFromSuperview()
+                        self.view?.addSubview(leaderboardTextView)
+                    }
+                        flagScore = true
+                    
+                    userScore.fontColor = SKColor(red: 0.35, green: 0.86, blue: 0.41, alpha: 1)
+                    aiScore.fontColor = SKColor(red: 0.35, green: 0.86, blue: 0.41, alpha: 0.7)
+                    
+                } else if node.name == "UvU"{
+                    
+                    if flagScore == true {
+                        leaderboardTextView.removeFromSuperview()
+                        self.view?.addSubview(leaderboardTextViewUser)
+                    }
+                        flagScore = false
+                    
+                    userScore.fontColor = SKColor(red: 0.35, green: 0.86, blue: 0.41, alpha: 0.7)
+                    aiScore.fontColor = SKColor(red: 0.35, green: 0.86, blue: 0.41, alpha: 1)
+                    
                     
                     
                 } else {

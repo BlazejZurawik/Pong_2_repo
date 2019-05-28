@@ -103,34 +103,41 @@ class GameScene: SKScene {
                 if node.name == "back" {
                     print(score)
                     print(data!)
-                    // SAVING SCORE TO USER DEFAULTS
-                    let userDefaults = UserDefaults.standard
-                    if let leaderBoardData = userDefaults.value(forKey: "leaderBoard") as? Data {
-                        var leaderBoardData2 = try? PropertyListDecoder().decode(Array<userDataScore>.self, from: leaderBoardData)
-                        
-                        if (data == ""){
-                            leaderBoardData2?.append(userDataScore(name: "Guest", score: score[0], score2: score[1]))
-                            print(score)
-                            print("nie bylo data")
-                        }else{
-                            leaderBoardData2?.append(userDataScore(name: data! , score: score[0], score2: score[1]))
-                            print(score)
-                            print("byla daty")
+                    
+                    if gameModee == "player2"{
+                        print("gameMode player2")
+                    } else {
+                    
+                        // SAVING SCORE TO USER DEFAULTS
+                        let userDefaults = UserDefaults.standard
+                        if let leaderBoardData = userDefaults.value(forKey: "leaderBoard") as? Data {
+                            var leaderBoardData2 = try? PropertyListDecoder().decode(Array<userDataScore>.self, from: leaderBoardData)
+                            
+                            if (data == ""){
+                                leaderBoardData2?.append(userDataScore(name: "Guest", score: score[0], score2: score[1]))
+                                print(score)
+                                print("nie bylo data")
+                            }else{
+                                leaderBoardData2?.append(userDataScore(name: data! , score: score[0], score2: score[1]))
+                                print(score)
+                                print("byla daty")
+                            }
+                            
+                            leaderBoardData2?.sort(by: {$0.score > $1.score})
+                            
+                            userDefaults.set(try? PropertyListEncoder().encode(leaderBoardData2), forKey: "leaderBoard")
+                            
+                        } else {
+                            
+                            let userDefaults = UserDefaults.standard
+                            let leaderBoardData2: [userDataScore] = []
+                            userDefaults.set(try? PropertyListEncoder().encode(leaderBoardData2), forKey: "leaderBoard")
                         }
                         
-                        leaderBoardData2?.sort(by: {$0.score > $1.score})
-                        
-                        userDefaults.set(try? PropertyListEncoder().encode(leaderBoardData2), forKey: "leaderBoard")
-                        
-                    } else {
-                        
-                        let userDefaults = UserDefaults.standard
-                        let leaderBoardData2: [userDataScore] = []
-                        userDefaults.set(try? PropertyListEncoder().encode(leaderBoardData2), forKey: "leaderBoard")
                     }
+
                     
-                    
-                    let gameScene1 = MenuScene()
+                    let gameScene1 = ScoreScene()
                     gameScene1.scaleMode = .resizeFill
                     self.view?.presentScene(gameScene1, transition: transition1)
                     self.removeAllActions()
